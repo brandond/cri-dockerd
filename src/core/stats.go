@@ -19,6 +19,8 @@ package core
 import (
 	"context"
 
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 	runtimeapi "k8s.io/cri-api/pkg/apis/runtime/v1alpha2"
 )
 
@@ -65,4 +67,18 @@ func (ds *dockerService) ListContainerStats(
 	}
 
 	return &runtimeapi.ListContainerStatsResponse{Stats: stats}, nil
+}
+
+func (ds *dockerService) PodSandboxStats(
+	ctx context.Context,
+	r *runtimeapi.PodSandboxStatsRequest,
+) (*runtimeapi.PodSandboxStatsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PodSandboxStats not implemented")
+}
+
+func (ds *dockerService) ListPodSandboxStats(
+	ctx context.Context,
+	r *runtimeapi.ListPodSandboxStatsRequest,
+) (*runtimeapi.ListPodSandboxStatsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListPodSandboxStats not implemented")
 }

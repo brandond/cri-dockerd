@@ -154,6 +154,7 @@ func (d *kubeDockerClient) CreateContainer(
 		opts.Config,
 		opts.HostConfig,
 		opts.NetworkingConfig,
+		opts.Platform,
 		opts.Name,
 	)
 	if ctxErr := contextError(ctx); ctxErr != nil {
@@ -371,10 +372,10 @@ func (p *progressReporter) start() {
 					p.cancel()
 					return
 				}
-				logrus.Infof("Pulling image %s: %s", p.image,  progress)
+				logrus.Infof("Pulling image %s: %s", p.image, progress)
 			case <-p.stopCh:
 				progress, _ := p.progress.get()
-				logrus.Infof("Stop pulling image %s: %s",p.image, progress)
+				logrus.Infof("Stop pulling image %s: %s", p.image, progress)
 				return
 			}
 		}
